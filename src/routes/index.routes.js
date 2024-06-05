@@ -5,7 +5,8 @@ const router = Router();
 
 router.get('/ping', async (req, res) => { 
     const [result] = await Pool.query('SELECT 1+1 AS result')
-    res.json(result)
+    res.json(result);
+
 })
 
 export default router;

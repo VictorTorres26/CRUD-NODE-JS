@@ -7,7 +7,7 @@ const app = express();
 app.use(express.json())
 
 app.use(indexRutas)
-app.use(empleadosRutas)
+app.use('/api' ,empleadosRutas)
 
 app.listen(3006, () =>{
     console.log("Servidor corriendo en el puerto 3006");

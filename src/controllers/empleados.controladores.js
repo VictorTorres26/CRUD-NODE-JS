@@ -1,6 +1,9 @@
 import { Pool } from "../../db/db.js"
 
-export const getEmpleados = (req, res) => { res.send('Metodo GET Empledos') }
+export const getEmpleados = async (req, res) => {
+   const [rows] = await Pool.query('SELECT * FROM empleados')
+   res.json(rows)
+}
 
 export const postEmpleados = async (req, res) => { 
     const { nombre, salario } = req.body
@@ -8,7 +11,7 @@ export const postEmpleados = async (req, res) => {
     res.send({
         id: row.insertId,
         nombre,
-        salario
+        salario,
     })
 }
 
