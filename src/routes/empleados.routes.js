@@ -1,5 +1,5 @@
 import { Router } from "express";
-import { getEmpleados, getEmpleadoId, postEmpleados, putEmpleados, deleteEmpleados } from "../controllers/empleados.controladores.js";
+import { getEmpleados, getEmpleadoId, postEmpleados, actualizarEmpleados, deleteEmpleados } from "../controllers/empleados.controladores.js";
 
 const router = Router();
 
@@ -8,7 +8,7 @@ router.get("/empleados/:id", getEmpleadoId);
 
 router.post("/empleados", postEmpleados);
 
-router.put("/empleados", putEmpleados);
+router.patch("/empleados/:id", actualizarEmpleados );
 
 router.delete("/empleados/:id", deleteEmpleados);
 

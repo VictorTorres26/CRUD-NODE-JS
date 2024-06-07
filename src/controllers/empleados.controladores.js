@@ -29,7 +29,20 @@ export const postEmpleados = async (req, res) => {
     })
 }
 
-export const putEmpleados = (req, res) => { res.send("Metodo PUT Empleados") }
+export const actualizarEmpleados = async (req, res) => { 
+    const {id} = req.params
+    const {nombre, salario} = req.body
+
+    const [rows] = await Pool.query('UPDATE empleados SET nombre = IFNULL(?, nombre), salario = IFNULL(?, salario)  WHERE id = ?', [nombre, salario, id])
+
+    if (rows.affectedRows == 0){
+        res.status(404)
+        res.send('Empleado no encontrado')
+}else{
+    res.send('Empleado actualizado')
+}
+
+}
 
 
 //Elimina los Datos de la tabla empleados por id
@@ -40,6 +53,7 @@ export const deleteEmpleados = async (req, res) => {
         res.status(404)
         res.send('Empleado no encontrado') 
     }
+
     res.sendStatus(204)
     res.send('Empleado eliminado')
     
